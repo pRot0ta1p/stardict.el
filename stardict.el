@@ -252,14 +252,13 @@ You should close the dict file yourself."
 Get clipbaord content if none, check `mark-active'.
 If `mark-active' on, return region string.
 Otherwise return word around point."
-  (let ((target (or (gui--selection-value-internal 'PRIMARY)
-					(gui--selection-value-internal 'CLIPBOARD))))
-	(if target
-		(format "%s" target)
-	  (if mark-active
-		  (buffer-substring-no-properties (region-beginning)
-										  (region-end))
-		(thing-at-point 'word)))))
+  (let ((target (gui--selection-value-internal 'CLIPBOARD)))
+	(if mark-active
+		(buffer-substring-no-properties (region-beginning)
+										(region-end))
+	  (if (thing-at-point 'word)
+		  (thing-at-point 'word)
+		(format "%s" target)))))
 
 ;;;###autoload
 (defun stardict-add-dictionary (&rest args)
@@ -326,7 +325,15 @@ Optional `DICT-LIST' defaults to `stardict-dictionary-list'."
 
 Optional `DICT-LIST' defaults to `stardict-dictionary-list'."
   (interactive)
-  (stardict-translate--popup (or word (stardict-dwim)) dict-list))
+  (stardict-translate--popup (or word (stardict-prompt-input)) dict-list))
+
+;;;###autoload
+(defun stardict-translate-minibuffer (&optional word dict-list)
+  "Use `stardict-translate' to translate WORD, provide a prompt.
+
+Optional `DICT-LIST' defaults to `stardict-dictionary-list'."
+  (interactive)
+  (message "%s" (stardict-translate (or word (stardict-prompt-input)) dict-list)))
 
 (provide 'stardict)
 
