@@ -15,13 +15,13 @@ This fork trying to improve upon the original script by adding some features:
 
 ## Usage
 
-Add you dictionaries like this:
+Add your dictionaries like this:
 
 ``` emacs-lisp
 (stardict-add-dictionary :lang "Eng"
-						 :path "~/.stardict/dic/stardict-lazyworm-ec-2.4.2"
-						 :filename "lazyworm-ec"
-						 :persist t)
+                         :path "~/.stardict/dic/stardict-lazyworm-ec-2.4.2/"  ;;uncompress you dictionary in folder
+                         :filename "lazyworm-ec"
+                         :persist t)
 ```
 
 Then call `stardict-translate-minibuffer` or `stardict-translate-popup` to translate.

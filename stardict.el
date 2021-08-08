@@ -268,7 +268,7 @@ ARGS is a plist holds basic info about a dictionary.
 Example:
 
 \(stardict-add-dictionary :lang \"Eng\"
-						  :path \"~/.stardict/dic/stardict-lazyworm-ec-2.4.2\"
+						  :path \"~/.stardict/dic/stardict-lazyworm-ec-2.4.2/\"
 						  :filename \"lazyworm-ec\"
 						  :persist t)"
   (interactive)
