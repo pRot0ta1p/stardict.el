@@ -12,7 +12,7 @@ This fork trying to improve upon the original script by adding some features:
 
 - f.el
 - cl-lib
-- posframe (optional, for popup display.)
+- posframe
 
 ## Usage
 
@@ -51,13 +51,13 @@ One obvious choise is defer the indexing right before you invoke any of the inte
 ``` emacs-lisp
  (stardict-defer-load '(stardict-translate-popup stardict-translate-minibuffer)
 	(stardict-add-dictionary :lang "Eng"
-							 :path "~/bin/sdcv/stardict-lazyworm-ec-2.4.2"
-							 :filename "lazyworm-ec"
-							 :persist t)
-	(stardict-add-dictionary :lang "Eng"
-							 :path "~/bin/sdcv/stardict-oxford-gb-formated-2.4.2"
-							 :filename "oxford-gb-formated"
-							 :persist t))
+                             :path "~/bin/sdcv/stardict-lazyworm-ec-2.4.2"
+                             :filename "lazyworm-ec"
+                             :persist t)
+    (stardict-add-dictionary :lang "Eng"
+                             :path "~/bin/sdcv/stardict-oxford-gb-formated-2.4.2"
+                             :filename "oxford-gb-formated"
+                             :persist t))
 
 ;; basic usage of `stardict-defer-load' is
 (stardict-defer-load '(list of function)

@@ -28,6 +28,7 @@
 
 (require 'f)
 (require 'cl-lib)
+(require 'posframe)
 
 ;;; Customizeable:
 
