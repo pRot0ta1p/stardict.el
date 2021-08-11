@@ -84,7 +84,7 @@ speed."
 
 ;;;Variables
 
-(defvar stardict-dictionary-list (list nil)
+(defvar stardict-dictionary-list nil
   "A list holds all dictionaries' info.
 
 You should modify this list by function `startdict-add-dictionary', but if you
@@ -176,7 +176,6 @@ The return is used as `DICT' argument in other functions."
 		  (let (p word offset size)
 			(re-search-forward "\\([^\x00]+?\\)\x00" nil t)
 			(setq p (point))
-
 			(setq word (match-string 1))
 			(setq offset
 				  (stardict-str2int
