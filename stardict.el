@@ -193,14 +193,16 @@ The return is used as `DICT' argument in other functions."
 
 (defun stardict-word-exist-p (dict word)
   "Checkout whether `WORD' existed in `DICT'."
-  (gethash word (nth 1 dict)))
+  (let ((word (downcase word)))
+	(gethash word (nth 1 dict))))
 
 (defun stardict-lookup (dict word name)
   "Lookup `WORD' in `DICT', return nil when not found."
-  (let ((info (gethash word (nth 1 dict)))
-		(file (nth 2 dict))
-		buffer
-		offset size begin end)
+  (let* ((word (downcase word))
+		 (info (gethash word (nth 1 dict)))
+		 (file (nth 2 dict))
+		 buffer
+		 offset size begin end)
 	(when info
 	  (setq offset (car info))
 	  (setq size (cdr info))
@@ -260,8 +262,8 @@ You should close the dict file yourself."
 (defun stardict-prompt-input ()
   "Prompt input object for translate."
   (read-string (format "Translate word (%s): " (or (stardict-dwim) ""))
-               nil nil
-               (stardict-dwim)))
+			   nil nil
+			   (stardict-dwim)))
 
 (defun stardict-dwim ()
   "Return clipbaord content, if none, return region or word around point.
@@ -290,10 +292,10 @@ Example:
 						  :persist t)"
   (interactive)
   (let* ((lang (plist-get args :lang))
-		(path (plist-get args :path))
-		(filename (plist-get args :filename))
-		(persist? (plist-get args :persist))
-		(realp (expand-file-name (concat filename ".ifo") path)))
+		 (path (plist-get args :path))
+		 (filename (plist-get args :filename))
+		 (persist? (plist-get args :persist))
+		 (realp (expand-file-name (concat filename ".ifo") path)))
 	(if (stringp lang)
 		(if (f-directory-p path)
 			(if (f-file-p realp)
